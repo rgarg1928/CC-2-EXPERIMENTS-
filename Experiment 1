@@ -1,0 +1,64 @@
+Experiment-1.1 : Contains duplicates (217)
+
+AIM:
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+ALGORITHM :
+
+1.Create an empty dictionary d.
+2.Traverse each element num in the list nums.
+3.For every element:
+       If num is already present in the dictionary, return True because a duplicate has been found.
+                Otherwise, insert num into the dictionary.
+4.If the loop completes without finding any duplicate, return False.
+
+CODE:
+class Solution:
+    def containsDuplicate(self, nums):
+        d = {}
+
+        for num in nums:
+            if num in d:
+                return True
+            d[num] = 1
+
+        return False
+
+
+Experiment-1.2 : Contains duplicates-2 (219)
+
+AIM: 
+Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+
+ALGORITHM:
+1.Create an empty dictionary mp.
+2.Traverse the array using index i.
+3.For each element nums[i]:
+     If nums[i] already exists in mp:
+ Calculate the distance between the current index and the previous index:
+
+   i - mp[nums[i]]
+    If the distance is less than or equal to k, return True.
+
+      Update the dictionary with the current index:
+
+          mp[nums[i]] = i
+4.If the loop finishes without finding such a pair, return False.
+
+
+
+CODE:
+
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        mp = {}
+        for i in range(len(nums)):
+
+            if nums[i] in mp:
+
+                if i - mp[nums[i]] <= k:
+                    return True
+
+            mp[nums[i]] = i
+
+        return False
